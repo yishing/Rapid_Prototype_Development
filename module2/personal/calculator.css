@@ -1,0 +1,16 @@
+body {
+  	background-color:  #00BFFF;
+  	text-align: center;
+		 }
+	h1{
+	font: Georgia,Times New Roman;
+	color: #FF1493;
+	font-size:300%; 
+	text-shadow: 2.5px 2.5px #000001;
+	}
+	h2{
+	font: Georgia,Times New Roman;
+	color: #ADFF2F;
+	font-size:300%; 
+	text-shadow: 2.5px 2.5px #000001;
+	}
