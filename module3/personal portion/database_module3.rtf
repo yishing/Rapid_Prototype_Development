@@ -1,0 +1,80 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;\f2\fmodern\fcharset0 Courier-Bold;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red247\green247\blue247;\red251\green0\blue7;
+\red133\green35\blue39;}
+\margl1440\margr1440\vieww17620\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 create table departments (school_code enum('L', 'B', 'A', 'F', 'E', 'T', 'I', 'W', 'S', 'U', 'M') not null DEFAULT 'L',\
+dept_id mediumint(10) unsigned not null,\
+abbreviation varchar(9) not null, \
+dept_name  VARCHAR(200) not null,\
+primary key (school_code,dept_id)\
+);\
+\
+\
+\
+create table courses ( \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 school_code enum('L', 'B', 'A', 'F', 'E', 'T', 'I', 'W', 'S', 'U', 'M') not null DEFAULT 'L',\
+dept_id mediumint(10) unsigned not null,\
+course_code char(5) not null,\
+name varchar(150) not null,\
+primary key (school_code,dept_id,course_code),\
+ foreign key(school_code, dept_id) references departments(school_code,dept_id)\
+)\
+\
+\
+create table grades(\
+pk_grade_ID mediumint(20) unsigned not null auto_increment,\
+student_id mediumint(8) unsigned not null,\
+grade decimal(5,2) not null,\
+school_code enum('L', 'B', 'A', 'F', 'E', 'T', 'I', 'W', 'S', 'U', 'M') not null DEFAULT 'L',\
+dept_id mediumint(10) unsigned not null,\
+course_code char(5) not null,\
+primary key (pk_grade_ID),\
+key student_id (student_id),\
+key foreign_key_course(school_code,dept_id,course_code),\
+constraint grades_student foreign key(student_id) references students(id),\
+constraint grades_courses foreign key (school_code,dept_id,course_code) references courses(school_code,dept_id,course_code)\
+);\
+\
+\
+\
+create table grades(\
+pk_grade_ID mediumint(20) unsigned not null auto_increment,\
+student_id mediumint(8) unsigned not null,\
+grade decimal(5,2) not null,\
+school_code enum('L', 'B', 'A', 'F', 'E', 'T', 'I', 'W', 'S', 'U', 'M') not null DEFAULT 'L',\
+dept_id mediumint(10) unsigned not null,\
+course_code char(5) not null,\
+primary key (pk_grade_ID),\
+ foreign key(student_id) references students (id),\
+foreign key (school_code,dept_id,course_code) references courses(school_code,dept_id,course_code)\
+)engine = INNODB DEFAULT character set=utf8 collate= utf8_general_ci;\
+\
+\
+\
+create table students(\
+id mediumint(10) unsigned not null,\
+first_name varchar(50) not null,\
+last_name varchar(50) not null,\
+email_adress varcahr(50) not null,\
+primary key(id)\
+);\
+\
+ insert into students(id,first_name,last_name,email_adress) values(88,'Ben\'92,\'92Harper','bharper@ffym.com');\
+\
+insert into grades(pk_grade_ID,student_id,grade,school_code,dept_id,course_code) values)\
+\
+\
+insert into grades(pk_grade_ID,student_id,grade,school_code,dept_id,course_code) values(17,202,94.8,\'92E\'92,60,\'92310'),(18,115,45.5,\'92E\'92,60,\'92310\'92),(19,88,95,\'92E\'92,60,\'92310');\
+\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f1\fs32 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 LOAD DATA LOCAL INFILE \cf4 \strokec4 '/home/myzlatan/module3/datafile/departments_data.txt\'92\cf2 \strokec2  
+\f2\b \cf5 \strokec5 INTO
+\f1\b0 \cf2 \strokec2  TABLE departments;\
+}
